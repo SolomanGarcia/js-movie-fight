@@ -14,6 +14,10 @@ figure .image img {
   width: 128px;
 }
 
+/* .content {
+  margin-left: 10px;
+} */
+
 .notification {
   margin-top: 20px !important;
 }

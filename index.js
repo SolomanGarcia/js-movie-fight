@@ -11,6 +11,16 @@ const fetchData = async (searchTerm) => {
 };
 
 const input = document.querySelector('input');
-input.addEventListener('input', (event) => {
-  fetchData(event.target.value);
-});
+
+// Delay fetchData from being called until user stops typing for 500ms
+let timeoutId;
+const onInput = (event) => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    fetchData(event.target.value);
+  }, 500);
+};
+
+input.addEventListener('input', onInput);

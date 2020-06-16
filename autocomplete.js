@@ -1,4 +1,4 @@
-const createAutoComplete = ({ root }) => {
+const createAutoComplete = ({ root, renderOption }) => {
   // Dropdown menu
 root.innerHTML = `
   <label><b>Search For a Movie</b></label>
@@ -28,14 +28,9 @@ const onInput = async event => {
   dropdown.classList.add('is-active');
   for (let movie of movies) {
     const option = document.createElement('a');
-    // If image is unavailable don't show broken image
-    const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
 
     option.classList.add('dropdown-item');
-    option.innerHTML = `
-      <img src="${imgSrc}" />
-      ${movie.Title}
-    `;
+    option.innerHTML = renderOption(movie);
     option.addEventListener('click', () => {
       dropdown.classList.remove('is-active');
       input.value = movie.Title;

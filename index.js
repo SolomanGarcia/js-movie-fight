@@ -71,7 +71,12 @@ const runComparison = () => {
   
 };
 
-const movieTemplate = (movieDetail) => {
+const movieTemplate = movieDetail => {
+  const dollars = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
+  const metascore = parseInt(movieDetail.Metascore);
+  const imdbRating = parseFloat(movieDetail.imdbRating);
+  const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ''));
+
   return `
     <article class="media">
       <figure class="media-left>
